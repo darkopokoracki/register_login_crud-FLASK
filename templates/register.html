@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Register</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Register</h1>
+        <hr>
+        <form action="/register", method="POST">
+            <p>
+                <label for="email">Email</label>
+                <input type="email" name="email">
+                <span style="color: red;">{{ email_error }}</span>
+            </p>
+    
+            <p>
+                <label for="password">Password</label>
+                <input type="password" name="password">
+            </p>
+
+            <p>
+                <label for="confirm">Confirm</label>
+                <input type="password" name="confirm">
+                <span style="color: red;">{{ password_error }}</span>
+            </p>
+    
+            <p>
+                <label for="vrsta">Vrsta korisnika</label>
+                <input type="number" name="vrsta">
+            </p>
+    
+            <p>
+                <label for="godina">Godina rodjenja</label>
+                <input type="number" name="godina">
+            </p>
+    
+            <p>
+                <input type="submit" value="Registruj se">
+            </p>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <hr>
+        <form action="/login" method="POST">
+            <p>
+                <label for="email">Email</label>
+                <input type="email" name="email">
+                <span style="color: red;">{{ email_error }}</span>
+            </p>
+
+            <p>
+                <label for="password">Password</label>
+                <input type="password" name="password">
+                <span style="color: red;">{{ password_error }}</span>
+            </p>
+
+            <p>
+                <input type="submit" value="Login">
+            </p>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+form {
+    margin-top: 2rem;
+}
+
+input[type="submit"] {
+    cursor: pointer;
+    padding: .5rem;
+    background: cyan;
+}
+
+table {
+    margin-top: 5rem;
+}
