@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Update</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Update korisnika {{ user[1] }}</h1>
+        <hr>
+        <form action="/update/{{ user[1] }}" method="POST">
+            <p>
+                <label for="email">Email</label>
+                <input type="email" name="email" value="{{ user[1] }}" readonly>
+            </p>
+
+            <p>
+                <label for="password">Password</label>
+                <input type="password" name="password">
+                <span style="color: red;">{{ password_error }}</span>
+            </p>
+
+            <p>
+                <label for="confirm">Password</label>
+                <input type="password" name="confirm">
+                <span style='color: red;'>{{ confirm_error }}</span>
+            </p>
+
+            <p>
+                <label for="godina">Godina rodjenja</label>
+                <input type="number" name="godina" value="{{ user[4] }}">
+            </p>
+
+            <p>
+                <label for="stanje">Stanje na racunu</label>
+                <input type="number" name="stanje" value="{{ user[5] }}">
+            </p>
+
+            <p>
+                <input type="submit" value="Sacuvaj promene">
+            </p>
+        </form>
+    </div>
+</body>
+</html>

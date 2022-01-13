@@ -162,7 +162,75 @@ def profil(email):
 
 @app.route('/update/<email>', methods=['GET', 'POST'])
 def update(email):
-    pass
+    cursor = mydb.cursor(prepared = True)
+    sql = "SELECT * FROM korisnik WHERE email = ?"
+    value = (email, )
+    cursor.execute(sql, value)
+
+    res = cursor.fetchone()
+    res = dekodiraj(res)
+
+    if res == None:
+        return redirect(
+            url_for('users')
+        )
+
+    if request.method == 'GET':
+        return render_template(
+            'update.html',
+            user = res
+        )
+
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        confirm = request.form['confirm']
+        godina = request.form['godina']
+        stanje = request.form['stanje']
+
+        cursor = mydb.cursor(prepared = True)
+        cursor.execute(sql, value)
+
+        res = cursor.fetchone()
+        res = dekodiraj(res)
+
+        #Prvo proveravamo lozinku iz baze:
+        if password != res[2]:
+            return render_template(
+                'update.html',
+                user = res,
+                password_error = 'Pogresna Lozinka'
+            )
+
+        #Zatim proveravamo da li se lozinke poklapaju, kao vid potvrde
+        if password != confirm:
+            return render_template(
+                'update.html',
+                user = res,
+                confirm_error = 'Lozinke se ne poklapaju!'
+            )
+
+        cursor = mydb.cursor(prepared = True)
+        sql = "UPDATE korisnik SET godina_rodjenja = ?, stanje_na_racunu = ? WHERE email = ?"
+        values = (godina, stanje, email)
+        cursor.execute(sql, values)
+        mydb.commit()
+
+        return redirect(
+            url_for('users')
+        )
+
+@app.route('/delete/<email>')
+def delete(email):
+    cursor = mydb.cursor(prepared = True)
+    sql = "DELETE FROM korisnik WHERE email = ?"
+    value = (email, )
+    cursor.execute(sql, value)
+    mydb.commit()
+
+    return redirect(
+        url_for('users')
+    )
 
 
 class Korisnik:

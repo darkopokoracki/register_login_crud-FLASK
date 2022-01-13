@@ -41,8 +41,8 @@
                     <td>{{ user[5] }}</td>
                     {% if session['privilegija'] == 1 %}
                         <td>
-                            <a href="{{ url_for('update') }}">Update</a>
-                            <a href="{{ url_for('delete') }}">Delete</a>
+                            <a href="{{ url_for('update', email=user[1]) }}">Update</a>
+                            <a href="{{ url_for('delete', email=user[1]) }}">Delete</a>
                         </td>
                     {% endif %}
                 </tr>
